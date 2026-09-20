@@ -67,19 +67,33 @@ Quote source text directly in each field below. Paraphrase does not satisfy them
 **Run history**
 
 agreement: 2/3 scored items
+
 agreement: 12/20 scored items  (bar: 18/20: below the bar; category floor unmet: no match in clear-accept)
+
 agreement: 12/20 scored items  (bar: 18/20: below the bar; category floor unmet: no match in clear-accept)
+
 agreement: 1/4 scored items
+
 agreement: 2/2 scored items
+
 agreement: 13/20 scored items  (bar: 18/20: below the bar; category floor unmet: no match in policy)
+
 agreement: 4/5 scored items
+
 agreement: 1/1 scored items
+
 agreement: 17/20 scored items  (bar: 18/20: below the bar; category floor unmet: no match in policy)
+
 agreement: 0/1 scored items
+
 agreement: 1/1 scored items
+
 agreement: 17/20 scored items  (bar: 18/20: below the bar; category floor unmet: no match in policy)
+
 agreement: 0/1 scored items
+
 agreement: 1/1 scored items
+
 agreement: 18/20 scored items  (bar: 18/20: PASS)
 
 **Issue analysis**
