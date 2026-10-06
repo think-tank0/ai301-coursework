@@ -147,7 +147,7 @@ reasoning: the package failed the files-to-modify check since it dis not call ou
 
 check: | files-to-modify | candidate plan | states at least a file that will be modified | required |
 
-The check reads this way because it rejects all plan's that are not call out files to be modified, the reason is that I think file path is a proper level of granularity to let the maintainer know where to focus their analysis.
+The check reads this way because it rejects all plan's that do not call out files to be modified, the reason is that I think file path is a proper level of granularity to let the maintainer know where to focus their analysis.
 
 **Trade-offs**
 
