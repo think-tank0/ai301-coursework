@@ -15,33 +15,111 @@ label is not graded.
 
 **GitHub username**
 
-[Your GitHub username, exactly as it appears on your profile - no @, no
-profile URL. Your comment upstream is identified by this name, and it is
-the only thing that ties it to you. Several students may plan the same
-house issue, so this is what keeps their comments off your score and
-yours off theirs.]
+think-tank0
 
 **Plan comment**
 
-[Link to the comment where you posted your plan on the issue. Use the comment's own
-permalink. **Then paste the text of that comment underneath the link** — the pasted text is
-what this field is graded on, so copy across what you actually posted.]
-
+https://github.com/codepath/pathreview-ai301-fa26-s1/issues/53#issuecomment-6022666985
 ---
 
 ## Your branch
 
 **Branch**
 
-[The name of the branch you built the change on, exactly as it appears in your fork. The
-naming shape is a type prefix, then the issue number, then a short description. **The issue
-number in the branch name must be the number of the issue you claimed** — a name carrying
-any other number does not satisfy this field.]
+fix/53-catching-parentheses-in-phone-us-regex
 
 **Evidence**
 
-[Your Unit 2 reproduction steps re-run against the built change: the before, then the
-after. Paste both, including the commands you ran and their output.]
+Before:
+
+repro.py with issue snippet
+```
+from safety.pii_scrubber import PIIScrubber
+s = PIIScrubber()
+print(s.scrub('Call me at (555) 123-4567 or 555-123-4567'))
+#observed: 'Call me at (555) 123-4567 or [REDACTED]'
+print(s.detect('Call me at (555) 123-4567'))
+#observed: []
+```
+
+Running snippet
+```
+
+python .\repro.py
+Call me at (555) 123-4567 or [REDACTED]
+2026-09-26 19:00:14 [info     ] pii_detected                   count=0 types=0
+[]
+```
+
+Running failing tests: test_us_phone_number_redaction, test_us_phone_formats, test_detect_phone_pii, test_phone_at_start_of_text.
+
+```
+pytest -m xfail .\tests\unit\test_pii_scrubber.py::TestPIIScrubber -v
+======================================================================================================================== test session starts =========================================================================================================================
+platform win32 -- Python 3.13.14, pytest-9.1.1, pluggy-1.6.0 -- C:\Coding\pathreview-ai301-fa26-s1\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+hypothesis profile 'default'
+benchmark: 5.3.0 (defaults: timer=time.perf_counter disable_gc=False min_rounds=5 min_time=0.000005 max_time=1.0 calibration_precision=10 warmup=False warmup_iterations=100000)
+rootdir: C:\Coding\pathreview-ai301-fa26-s1
+configfile: pyproject.toml
+plugins: anyio-4.15.1, hypothesis-6.168.1, platformdirs-4.12.0, asyncio-1.4.0, benchmark-5.3.0, cov-7.1.0, pytest_httpserver-1.1.5
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 25 items / 20 deselected / 5 selected                                                                                                                                                                                                                       
+
+
+tests/unit/test_pii_scrubber.py::TestPIIScrubber::test_us_phone_number_redaction XFAIL (issue #53: PII scrubber does not redact parenthesized US phone numbers)                                                                                                 [ 20%]
+tests/unit/test_pii_scrubber.py::TestPIIScrubber::test_us_phone_formats XFAIL (issue #53: PII scrubber does not redact parenthesized US phone numbers)                                                                                                          [ 40%]
+tests/unit/test_pii_scrubber.py::TestPIIScrubber::test_detect_phone_pii XFAIL (issue #53: PII scrubber does not redact parenthesized US phone numbers)                                                                                                          [ 60%]
+tests/unit/test_pii_scrubber.py::TestPIIScrubber::test_phone_at_start_of_text XFAIL (issue #53: PII scrubber does not redact parenthesized US phone numbers)                                                                                                    [ 80%]
+tests/unit/test_pii_scrubber.py::TestPIIScrubber::test_mixed_pii_and_text XFAIL (issue #53: PII scrubber does not redact parenthesized US phone numbers)                                                                                                        [100%]
+
+================================================================================================================= 20 deselected, 5 xfailed in 0.27s ==================================================================================================================
+```
+
+
+After:
+
+repro.py with issue snippet
+```
+from safety.pii_scrubber import PIIScrubber
+s = PIIScrubber()
+print(s.scrub('Call me at (555) 123-4567 or 555-123-4567'))
+#observed: 'Call me at [REDACTED] or [REDACTED]'
+print(s.detect('Call me at (555) 123-4567'))
+#observed: [{'type': 'phone_us', 'value': '(555) 123-4567', 'start': 11, 'end': 25}]
+```
+
+Running snippet
+```
+
+python .\repro.py
+Call me at [REDACTED] or [REDACTED]                                                                                                                     
+2026-10-06 12:40:06 [info     ] pii_detected                   count=1 types=1
+[{'type': 'phone_us', 'value': '(555) 123-4567', 'start': 11, 'end': 25}]
+```
+
+Running failing tests: test_us_phone_number_redaction, test_us_phone_formats, test_detect_phone_pii, test_phone_at_start_of_text.
+
+```
+pytest tests/unit/test_pii_scrubber.py -k "test_us_phone_number_redaction or test_us_phone_formats or test_detect_phone_pii or test_phone_at_start_of_text" -v                                                                                                       
+================================================================== test session starts ==================================================================
+platform win32 -- Python 3.13.14, pytest-9.1.1, pluggy-1.6.0 -- C:\Coding\pathreview-ai301-fa26-s1\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+hypothesis profile 'default'
+benchmark: 5.3.0 (defaults: timer=time.perf_counter disable_gc=False min_rounds=5 min_time=0.000005 max_time=1.0 calibration_precision=10 warmup=False warmup_iterations=100000)
+rootdir: C:\Coding\pathreview-ai301-fa26-s1
+configfile: pyproject.toml
+plugins: anyio-4.15.1, hypothesis-6.168.1, platformdirs-4.12.0, asyncio-1.4.0, benchmark-5.3.0, cov-7.1.0, pytest_httpserver-1.1.5
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collected 25 items / 21 deselected / 4 selected                                                                                                          
+
+tests/unit/test_pii_scrubber.py::TestPIIScrubber::test_us_phone_number_redaction PASSED                                                            [ 25%]
+tests/unit/test_pii_scrubber.py::TestPIIScrubber::test_us_phone_formats PASSED                                                                     [ 50%]
+tests/unit/test_pii_scrubber.py::TestPIIScrubber::test_detect_phone_pii PASSED                                                                     [ 75%]
+tests/unit/test_pii_scrubber.py::TestPIIScrubber::test_phone_at_start_of_text PASSED                                                               [100%]
+
+=========================================================== 4 passed, 21 deselected in 0.20s ============================================================
+```
 
 ## Eval iterations
 
@@ -50,28 +128,27 @@ fields.
 
 **Run history**
 
-[The agreement score of each run you did, in order. A single run is a complete answer if
-only one run occurred. **The last score in your list must match the agreement line in the
-`eval-run.txt` you committed** — that file is the record of your final run.]
+agreement: 19/20 scored items  (bar: 18/20: PASS)
 
 **Package analysis**
 
-[Pick one scored package (`pkg-01` through `pkg-20` — the four `calib-` packages are never
-scored). Name it by id, say what your rubric decided and what the gold label said, and
-explain why your rubric read it that way.]
+pkg-14
+
+rubric decision: reject
+
+gold label: accept
+
+reasoning: the package failed the files-to-modify check since it dis not call out a specific file that would be modified.
 
 **Check rationale**
 
-[Quote one check from the `rubric.md` you uploaded to `tools/plan-check/`, exactly as it reads now.
-Then say why it reads that way — what you revised to get there, or what you rejected in
-favour of it.]
+check: | files-to-modify | candidate plan | states at least a file that will be modified | required |
+
+The check reads this way because it rejects all plan's that are not call out files to be modified.
 
 **Trade-offs**
 
-[Every check gives something up. Any one of these is a complete answer: a package whose
-result it changes, a canary you re-ran with `--only`, a case you accept it will miss, or a
-stated reason nothing changed elsewhere. "Nothing changed, and here is how I know" earns
-the point in full when the reason follows.]
+This check in its current version made it so that pkg 14 was rejected as it calls generic areas that will be modified instead of an specific file.
 
 ---
 
