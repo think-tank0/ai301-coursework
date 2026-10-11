@@ -15,15 +15,11 @@ label is not graded.
 
 **Pull request**
 
-[Link to the pull request you opened. It must be the pull request's own page on the Path
-Review repo, not your fork's branch page.]
+https://github.com/codepath/pathreview-ai301-fa26-s1/pull/126
 
 **Branch**
 
-[The name of the branch the pull request comes from, exactly as it appears in your fork.
-The naming shape is a type prefix, then the issue number, then a short description. **The
-issue number in the branch name must be the number of the issue the pull request fixes** —
-a name carrying any other number does not satisfy this field.]
+fix/53-catching-parentheses-in-phone-us-regex
 
 ## Eval iterations
 
@@ -32,28 +28,27 @@ fields.
 
 **Run history**
 
-[The agreement score of each run you did, in order. A single run is a complete answer if
-only one run occurred. **The last score in your list must match the agreement line in the
-`eval-run.txt` you committed** — that file is the record of your final run.]
+agreement: 20/20 scored items  (bar: 18/20: PASS)
 
 **Package analysis**
 
-[Pick one scored package (`pkg-01` through `pkg-20` — the four `calib-` packages are never
-scored). Name it by id, say what your rubric decided and what the gold label said, and
-explain why your rubric read it that way.]
+pkg-17
+
+rubric decision: reject
+
+gold label: reject
+
+reasoning: the package failed the silent-drift check since the plan has two deliverables, the dev warning and the update to the reactivity-core docs page. The diff touches only `reactive.ts` and `reactive.spec.ts`. The docs deliverable is missing with no deviation note.
 
 **Check rationale**
 
-[Quote one check from the `rubric.md` you uploaded to `tools/pr-precheck/`, exactly as it reads now.
-Then say why it reads that way — what you revised to get there, or what you rejected in
-favour of it.]
+check: | silent-drift | Plan context, Candidate PR | the diff only contains changes declared in the plan and its deviation notes | required |
+
+The check reads this way because it takes the plan in Plan context as its source of truth. It also considers deviation notes as an alternate source of truth to account for instances in which the person working on the fix encountered issues that required them to do more or less than stated in their initial plan.
 
 **Trade-offs**
 
-[Every check gives something up. Any one of these is a complete answer: a package whose
-result it changes, a canary you re-ran with `--only`, a case you accept it will miss, or a
-stated reason nothing changed elsewhere. "Nothing changed, and here is how I know" earns
-the point in full when the reason follows.]
+This check will reject packages that would have been otherwise fine like pkg 17 if it had added deviation notes indicating that it didn't modify the docs as initially planned, or by adding the doc changes to the diff in the candidate PR.
 
 ---
 
