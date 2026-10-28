@@ -55,10 +55,9 @@ happened; these entries are the toolkit's own timeline.
 All four entries are graded. Keep every heading below, and fill each
 one in the week it belongs to.
 
-**Unit 5: [one line on the tool work]**
+**Unit 5: worked on building the issue-scout skill to retrieve and grade GitHub issues based on issue quality and my fit profile.**
 
-[2-4 sentences: what you built (the scout, your strategy), what broke
-or fell short, what changed because of it.]
+I added queries and ranking filters to search-strategy.md. While running the skill, I realized there were a couple of edge cases that needed to be patched. Namely, I updated the issue-is-not-claimed check to also consider comments in the issue body, allowing it to catch cases where the issue author is already working on a fix. I also added a rubric check to discard issues that call out open issues as dependencies.
 
 **Unit 6: [one line on the tool work]**
 
