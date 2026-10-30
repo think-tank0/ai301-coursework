@@ -8,10 +8,9 @@ format criteria grade exactly that. Your course repo link is the whole submissio
 files and no evidence uploads are part of Assignment 5.
 
 **Contribution Number:** [1]
-**Student:** [Student name]
-**GitHub Username:** [your GitHub username, exactly as it appears on your profile - no @, no
-profile URL. Your comments upstream are identified by this name.]
-**Issue:** [GitHub issue link]
+**Student:** Wilman Rodriguez
+**GitHub Username:** think-tank0
+**Issue:** https://github.com/nvaccess/nvda/issues/20478
 **Pull Request:** [GitHub PR link, once opened]
 
 One repository, built across units 5 to 8, telling the whole story of your real
@@ -59,11 +58,15 @@ one in the week it belongs to.
 
 I added queries and ranking filters to search-strategy.md. While running the skill, I realized there were a couple of edge cases that needed to be patched. Namely, I updated the issue-is-not-claimed check to also consider comments in the issue body, allowing it to catch cases where the issue author is already working on a fix. I also added a rubric check to discard issues that call out open issues as dependencies.
 
-**Unit 6: [one line on the tool work]**
+**Unit 6: worked on updating repro-check skill so that it will work with repos in the wild**
 
 [2-4 sentences: the voice-guard, the repo-memory file. What broke or
 fell short, and what changed because of it. "Nothing broke" counts when
 it is true - say how you know.]
+
+The voice-guard installation steps did not work reliably for Windows, I troubleshooted the issue and realized that Claude did not always use the bash tool when using it on VS Code. I ended up adding a PowerShell specific hook to solve it. The repro-check tool itself did not break.
+
+Did not run into any issues with the memory file.
 
 **Unit 7: [one line on the tool work]**
 
@@ -79,24 +82,16 @@ drafted, what you did with the draft.]
 
 ## Why I Chose This Issue
 
-[1-2 paragraphs in your own words: how you searched, what your scan
-surfaced, what your scout's verdict said, why this issue fits your
-profile, and what you hope to learn. If your scout's verdict on it
-was reject and you chose it anyway, say so here and say why; choosing
-against your own tool silently is what loses points. Close with an
-honest read of the tool itself: where the scout fell short on a real
-wild search and what you changed or would change, or what convinced
-you it held up. **Record the link to your claim comment in this section too.**
-Not claimed yet? Write `claim pending` and today's date where the link goes,
-and add the link the moment your claim lands.]
+I chose this issue after browsing through all of the Python project issues the course tool returned with a "good first issue" label. The thing that sold me on it was its practicality and narrow scope. I hope to learn more about the project itself, as I've never interacted with similar software in the past. The issue scout tool recommended the issue based on my experience with Python and the fact that the issue scope was well defined by the maintainer. Additionally, it prompted me to confirm that the two previous attempts on the PR were abandoned.
+
+https://github.com/nvaccess/nvda/issues/20478#issuecomment-6479200335
 
 **Toolkit**
 
-- Tool: issue-scout (your scout: your search strategy, your rubric),
-  and how you used it
-- What it produced: [the scan and its verdict on this issue, described]
-- Difficulties: [where it fell short, or "none met" if none did]
-- What changed: [what you patched or would update, or "nothing"]
+- Tool: issue-scout, I used it to process and grade the two issues I short listed after browsing through the course issue browsing tool.
+- What it produced: nvaccess/nvda#20478 — accept. Difficulty: straightforward.
+- Difficulties: none.
+- What changed: Replaced present-technical-details check for more robust scope-feasible check as directed by the assignment.
 
 ---
 
