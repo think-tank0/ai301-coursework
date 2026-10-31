@@ -125,32 +125,92 @@ https://github.com/nvaccess/nvda/issues/20478#issuecomment-6479200335
 ## Reproduction Process
 
 **Environment Setup**
+Environment: Python 3.13.15, Windows 11 (x64), Microsoft Edge Version 155.0.4283.45 (Official build) (64-bit), Google Chrome Version 155.0.8059.79 (Official Build) (64-bit), latest master, uv 0.13.6.
 
-[What a stranger would need to stand this up: your operating system,
-the relevant versions (language, runtime, package manager, the project
-itself), and how you set the project up. Then the challenges you faced
-and how you solved them, or that none came up.]
+Steps: followed steps on contributing.md(projectDocs/dev/contributing.md) for dev environment setup -> create longParagraph.html file with the snippet below -> run source code -> open longParagraph.html on your favorite browser
+
+contributing.md steps
+1. Fork repository
+2. Clone: git clone --recursive https://github.com/YOUR-USERNAME/nvda.git
+3. Keep fork in sync
+    # Add a remote for the NV Access repository.
+    git remote add nvaccess https://github.com/nvaccess/nvda.git
+    # Fetch the NV Access branches.
+    git fetch nvaccess
+    # Switch to the local master branch.
+    git checkout master
+    # Set the local master to use the NV Access master as its upstream.
+    git branch -u nvaccess/master
+    # Update the local master.
+    git pull 
+4. Install Microsoft Visual Studio
+    Microsoft Visual Studio 2022 or 2026
+    To replicate the production build environment, use the version of Visual Studio 2022 that GitHub Actions is using.
+    If you don't use the Visual Studio IDE itself, you can download the build tools.
+    If you do intend to use the Visual Studio IDE (not required for NVDA development), you can download the community version.
+    The Professional and Enterprise versions are also supported.
+    Preview or insiders versions are not supported.
+    When installing Visual Studio, additional components must be included:
+    You can automatically fetch these using NVDAs .vsconfig using the import feature of the VS installer.
+    In the list on the Workloads tab, in the Desktop grouping:
+    Desktop development with C++.
+    Once selected, ensure "C++ Clang tools for Windows" is included under the optional grouping.
+    On the Individual components tab, ensure the following items are selected:
+    Windows 11 SDK (10.0.26100.x)
+    MSVC v143 - VS 2022 C++ ARM64/ARM64EC build tools
+    MSVC v143 - VS 2022 C++ x64/x86 build tools
+    C++ ATL for v143 build tools (x86 & x64)
+    C++ ATL for v143 build tools (ARM64/ARM64EC)
+5. Build nvda from source: scons source
+6. Execute runnvda.bat in the root directory
+
+longParagraph.html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Long Paragraph Test</title>
+</head>
+<body>
+
+<h1>Long Paragraph Test</h1>
+
+<p id="target">
+This is a single paragraph intentionally constructed to exceed two hundred fifty characters. The goal is to verify whether NVDA browse mode splits the content into multiple virtual lines based solely on the maximum line length setting rather than preserving the paragraph as a single continuous reading unit. Additional filler text continues here so that the paragraph exceeds two hundred and fifty characters and clearly triggers any configured wrapping behavior.
+</p>
+
+</body>
+</html>
 
 **Steps to Reproduce**
+Manual test
+runnvda.bat
+NVDA + Ctrl + B
+Set Maximum number of characters on one line to 300. It will be capped at 250.
+NVDA + N -> Tools -> Speech viewer
+Open longParagraph.html on browser
+NVDA + space
+downArrow + downArrow + downArrow
 
-1. [Step 1]
-2. [Step 2]
-3. [Observed result]
+You should hear the following sentences after following the steps above. (Copied from Speech Viewer output)
+heading    level 1  Long Paragraph Test
+This is a single paragraph intentionally constructed to exceed two hundred fifty characters. The goal is to verify whether NVDA browse mode splits the content into multiple virtual lines based solely on the maximum line length setting rather than 
+preserving the paragraph as a single continuous reading unit. Additional filler text continues here so that the paragraph exceeds two hundred and fifty characters and clearly triggers any configured wrapping behavior.
 
 **Reproduction Evidence**
 
-- **Commit showing reproduction:** [link to commit in your fork]
-- **Screenshots/logs:** [if applicable]
-- **My findings:** [what you discovered during reproduction; an
-  honest, evidenced cannot-reproduce that led you to re-pick or ask
-  the maintainer belongs here and costs you nothing]
+- **Commit showing reproduction:** none
+- **Screenshots/logs:** Speech viewer logs
+This is a single paragraph intentionally constructed to exceed two hundred fifty characters. The goal is to verify whether NVDA browse mode splits the content into multiple virtual lines based solely on the maximum line length setting rather than 
+preserving the paragraph as a single continuous reading unit. Additional filler text continues here so that the paragraph exceeds two hundred and fifty characters and clearly triggers any configured wrapping behavior.
+- **My findings:** I tested the current Behavior of the Browser Mode while reading paragraphs and validated the 250 character limit.
 
 **Toolkit**
 
-- Tool:
-- What it produced:
-- Difficulties:
-- What changed:
+- Tool: repro-check, I used the tool to grade the claim comment and repro report draft for the issue.
+- What it produced: it accepted both the comment and the repro report.
+- Difficulties: setting up the hooks to work on Windows OS.
+- What changed: nothing besides the additions to the voice guide.
 
 ---
 
