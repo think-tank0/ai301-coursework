@@ -133,6 +133,7 @@ contributing.md steps
 1. Fork repository
 2. Clone: git clone --recursive https://github.com/YOUR-USERNAME/nvda.git
 3. Keep fork in sync
+    ```
     # Add a remote for the NV Access repository.
     git remote add nvaccess https://github.com/nvaccess/nvda.git
     # Fetch the NV Access branches.
@@ -142,29 +143,32 @@ contributing.md steps
     # Set the local master to use the NV Access master as its upstream.
     git branch -u nvaccess/master
     # Update the local master.
-    git pull 
+    git pull
+    ```
 4. Install Microsoft Visual Studio
-    Microsoft Visual Studio 2022 or 2026
-    To replicate the production build environment, use the version of Visual Studio 2022 that GitHub Actions is using.
-    If you don't use the Visual Studio IDE itself, you can download the build tools.
-    If you do intend to use the Visual Studio IDE (not required for NVDA development), you can download the community version.
-    The Professional and Enterprise versions are also supported.
-    Preview or insiders versions are not supported.
-    When installing Visual Studio, additional components must be included:
-    You can automatically fetch these using NVDAs .vsconfig using the import feature of the VS installer.
-    In the list on the Workloads tab, in the Desktop grouping:
-    Desktop development with C++.
-    Once selected, ensure "C++ Clang tools for Windows" is included under the optional grouping.
-    On the Individual components tab, ensure the following items are selected:
-    Windows 11 SDK (10.0.26100.x)
-    MSVC v143 - VS 2022 C++ ARM64/ARM64EC build tools
-    MSVC v143 - VS 2022 C++ x64/x86 build tools
-    C++ ATL for v143 build tools (x86 & x64)
-    C++ ATL for v143 build tools (ARM64/ARM64EC)
+   
+  * Microsoft Visual Studio 2022 or 2026
+  * To replicate the production build environment, use the [version of Visual Studio 2022 that GitHub Actions is using](https://github.com/actions/runner-images/tree/main/images/windows).
+  * If you don't use the Visual Studio IDE itself, you can download the [build tools](https://aka.ms/vs/17/release/vs_BuildTools.exe).
+  * If you do intend to use the Visual Studio IDE (not required for NVDA development), you can download [the community version](https://aka.ms/vs/17/release/vs_Community.exe).
+    * The Professional and Enterprise versions are also supported.
+    * Preview or insiders versions are *not* supported.
+* When installing Visual Studio, additional components must be included:
+  * You can automatically fetch these using [NVDAs .vsconfig](../../.vsconfig) using the [import feature of the VS installer](https://learn.microsoft.com/en-us/visualstudio/install/import-export-installation-configurations?view=vs-2022#import-a-configuration).
+  * In the list on the Workloads tab, in the Desktop grouping:
+    * Desktop development with C++.
+      * Once selected, ensure "C++ Clang tools for Windows" is included under the optional grouping.
+  * On the Individual components tab, ensure the following items are selected:
+    * Windows 11 SDK (10.0.26100.x)
+    * MSVC v143 - VS 2022 C++ ARM64/ARM64EC build tools
+    * MSVC v143 - VS 2022 C++ x64/x86 build tools
+    * C++ ATL for v143 build tools (x86 & x64)
+    * C++ ATL for v143 build tools (ARM64/ARM64EC)
 5. Build nvda from source: scons source
 6. Execute runnvda.bat in the root directory
 
 longParagraph.html
+```
 <!DOCTYPE html>
 <html>
 <head>
@@ -181,9 +185,11 @@ This is a single paragraph intentionally constructed to exceed two hundred fifty
 
 </body>
 </html>
-
+```
 **Steps to Reproduce**
+
 Manual test
+```
 runnvda.bat
 NVDA + Ctrl + B
 Set Maximum number of characters on one line to 300. It will be capped at 250.
@@ -191,11 +197,17 @@ NVDA + N -> Tools -> Speech viewer
 Open longParagraph.html on browser
 NVDA + space
 downArrow + downArrow + downArrow
+```
 
 You should hear the following sentences after following the steps above. (Copied from Speech Viewer output)
+
+```
 heading    level 1  Long Paragraph Test
-This is a single paragraph intentionally constructed to exceed two hundred fifty characters. The goal is to verify whether NVDA browse mode splits the content into multiple virtual lines based solely on the maximum line length setting rather than 
+
+This is a single paragraph intentionally constructed to exceed two hundred fifty characters. The goal is to verify whether NVDA browse mode splits the content into multiple virtual lines based solely on the maximum line length setting rather than
+
 preserving the paragraph as a single continuous reading unit. Additional filler text continues here so that the paragraph exceeds two hundred and fifty characters and clearly triggers any configured wrapping behavior.
+```
 
 **Reproduction Evidence**
 
