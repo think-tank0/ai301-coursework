@@ -232,27 +232,27 @@ preserving the paragraph as a single continuous reading unit. Additional filler 
 
 [Your analysis of the root cause: what is causing the issue, traced
 to the files and functions involved.]
+The current 250 "Maximum number of characters on one line" limit is defined in code; the range needs to be updated from 10-250 to 0-1000 as per the maintainer request.
 
 **Proposed Solution**
 
-[High-level description of your fix approach, and what you are
-deliberately NOT changing.]
+ln 2616 and 2617 in ```nvda\source\gui\settingsDialogs.py``` need to be updated to the new values so that users can set them up manually via settings.
 
 **Implementation Plan**
 
-1. [Modify file X to do Y]
-2. [Add or change Z]
-3. [Update tests]
+1. Update min and max values in ```nvda\source\gui\settingsDialogs.py``` for "Maximum number of characters on one line" setting under makeSettings method in the BrowseModePanel class.
+2. Add unit test validating that the BrowseMode setting values can be set as intended.
+3. Add system test validating both the 1000 character upper limit behavior and the 0 value unbounded behavior.
 
 [Record deviations here as they happen: what changed mid-build and
 why. A recorded deviation is honest work; silent drift is not.]
 
 **Toolkit**
 
-- Tool:
-- What it produced:
-- Difficulties:
-- What changed:
+- Tool: plan check, used to grade plan.md and plan-comment.md.
+- What it produced: accept.
+- Difficulties: The lack of a repro comment proved a challenge for the skill.
+- What changed: updated the verdict to pass unclear checks that depended on repro comment.
 
 ---
 
