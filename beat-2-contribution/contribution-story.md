@@ -180,7 +180,7 @@ longParagraph.html
 <h1>Long Paragraph Test</h1>
 
 <p id="target">
-This is a single paragraph intentionally constructed to exceed two hundred fifty characters. The goal is to verify whether NVDA browse mode splits the content into multiple virtual lines based solely on the maximum line length setting rather than preserving the paragraph as a single continuous reading unit. Additional filler text continues here so that the paragraph exceeds two hundred and fifty characters and clearly triggers any configured wrapping behavior.
+word 001 word 002 word 003 word 004 word 005 word 006 word 007 word 008 word 009 word 010 word 011 word 012 word 013 word 014 word 015 word 016 word 017 word 018 word 019 word 020 word 021 word 022 word 023 word 024 word 025 word 026 word 027 word 028 word 029 word 030 word 031 word 032 word 033 word 034 word 035 word 036 word 037 word 038 word 039 word 040 word 041 word 042 word 043 word 044 word 045 word 046 word 047 word 048 word 049 word 050 word 051 word 052 word 053 word 054 word 055 word 056 word 057 word 058 word 059 word 060 word 061 word 062 word 063 word 064 word 065 word 066 word 067 word 068 word 069 word 070 word 071 word 072 word 073 word 074 word 075 word 076 word 077 word 078 word 079 word 080 word 081 word 082 word 083 word 084 word 085 word 086 word 087 word 088 word 089 word 090 word 091 word 092 word 093 word 094 word 095 word 096 word 097 word 098 word 099 word 100 word 101 word 102 word 103 word 104 word 105 word 106 word 107 word 108 word 109 word 110 word 111 word 112 word 113 word 114 word 115 word 116 word 117 word 118 word 119 word 120 word 121 word 122 word 123 word 124 word 125
 </p>
 
 </body>
@@ -204,17 +204,29 @@ You should hear the following sentences after following the steps above. (Copied
 ```
 heading    level 1  Long Paragraph Test
 
-This is a single paragraph intentionally constructed to exceed two hundred fifty characters. The goal is to verify whether NVDA browse mode splits the content into multiple virtual lines based solely on the maximum line length setting rather than
+word 001 word 002 word 003 word 004 word 005 word 006 word 007 word 008 word 009 word 010 word 011 word 012 word 013 word 014 word 015 word 016 word 017 word 018 word 019 word 020 word 021 word 022 word 023 word 024 word 025 word 026 word 027 word 
 
-preserving the paragraph as a single continuous reading unit. Additional filler text continues here so that the paragraph exceeds two hundred and fifty characters and clearly triggers any configured wrapping behavior.
+028 word 029 word 030 word 031 word 032 word 033 word 034 word 035 word 036 word 037 word 038 word 039 word 040 word 041 word 042 word 043 word 044 word 045 word 046 word 047 word 048 word 049 word 050 word 051 word 052 word 053 word 054 word 055 
+
+word 056 word 057 word 058 word 059 word 060 word 061 word 062 word 063 word 064 word 065 word 066 word 067 word 068 word 069 word 070 word 071 word 072 word 073 word 074 word 075 word 076 word 077 word 078 word 079 word 080 word 081 word 082 word 
+
+083 word 084 word 085 word 086 word 087 word 088 word 089 word 090 word 091 word 092 word 093 word 094 word 095 word 096 word 097 word 098 word 099 word 100 word 101 word 102 word 103 word 104 word 105 word 106 word 107 word 108 word 109 word 110 
+
+word 111 word 112 word 113 word 114 word 115 word 116 word 117 word 118 word 119 word 120 word 121 word 122 word 123 word 124 word 125
 ```
 
 **Reproduction Evidence**
 
 - **Commit showing reproduction:** none
 - **Screenshots/logs:** Speech viewer logs
-This is a single paragraph intentionally constructed to exceed two hundred fifty characters. The goal is to verify whether NVDA browse mode splits the content into multiple virtual lines based solely on the maximum line length setting rather than 
-preserving the paragraph as a single continuous reading unit. Additional filler text continues here so that the paragraph exceeds two hundred and fifty characters and clearly triggers any configured wrapping behavior.
+```
+heading    level 1  Long Paragraph Test
+word 001 word 002 word 003 word 004 word 005 word 006 word 007 word 008 word 009 word 010 word 011 word 012 word 013 word 014 word 015 word 016 word 017 word 018 word 019 word 020 word 021 word 022 word 023 word 024 word 025 word 026 word 027 word 
+028 word 029 word 030 word 031 word 032 word 033 word 034 word 035 word 036 word 037 word 038 word 039 word 040 word 041 word 042 word 043 word 044 word 045 word 046 word 047 word 048 word 049 word 050 word 051 word 052 word 053 word 054 word 055 
+word 056 word 057 word 058 word 059 word 060 word 061 word 062 word 063 word 064 word 065 word 066 word 067 word 068 word 069 word 070 word 071 word 072 word 073 word 074 word 075 word 076 word 077 word 078 word 079 word 080 word 081 word 082 word 
+083 word 084 word 085 word 086 word 087 word 088 word 089 word 090 word 091 word 092 word 093 word 094 word 095 word 096 word 097 word 098 word 099 word 100 word 101 word 102 word 103 word 104 word 105 word 106 word 107 word 108 word 109 word 110 
+word 111 word 112 word 113 word 114 word 115 word 116 word 117 word 118 word 119 word 120 word 121 word 122 word 123 word 124 word 125
+```
 - **My findings:** I tested the current Behavior of the Browser Mode while reading paragraphs and validated the 250 character limit.
 
 **Toolkit**
