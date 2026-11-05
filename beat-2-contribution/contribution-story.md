@@ -1,4 +1,4 @@
-# Contribution: [Issue Title]
+# Contribution: Updating BrowseModePanel Range of Values for Maximum number of characters on one line Setting
 
 Path: `beat-2-contribution/contribution-story.md`
 
