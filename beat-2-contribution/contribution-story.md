@@ -68,10 +68,9 @@ Did not run into any issues with the memory file.
 
 I encountered a couple issues when running the ship-gate, first it complained about not having changes against master. I then proceeded to git add all the changed files thinking that was enough, but upon a second failed run, I realized the tool expected the changes to be in a committed stage. After that, the tool ran all the needed tests and reported a pass before running the pr-check skill on `pr_draft.md` which also passed.
 
-**Unit 8: [one line on the tool work]**
+**Unit 8: worked on installing the pr-monitor and added rules to the playbook it follows to suggest next steps based on the latest PR activity**
 
-[2-4 sentences: the PR-monitor and your playbook. What it read, what it
-drafted, what you did with the draft.]
+The pr-monitor read my PR and produced `run-report.md` with an up to date summary of the current PR state and `drafted-move.md` which based on my playbook suggested I wait until Dec 5th to run the tool again.
 
 ---
 
@@ -456,19 +455,16 @@ built, decisions you made when you made them, wrong turns included.]
 
 **Maintainer Feedback:**
 
-- [Date]: [feedback received, or "none yet"; silence is a normal
-  state and costs you nothing]
-- [Date]: [how you addressed it]
 - None yet.
 
-**Status:** Awaiting review
+**Status:** Awaiting review.
 
 **Toolkit**
 
-- Tool:
-- What it produced:
-- Difficulties:
-- What changed:
+- Tool: ship-gate, I used it to make sure my local branch passed all required tests before deployment and to run the pr-precheck on pr_draft.md before posting the PR.
+- What it produced: PASS. feature/20478-updating-max-number-of-characters-in-line passed your manifest's checks and your pr-precheck. Open the PR through Claude Code within 30 minutes, without changing anything, and the ship-gate lets it through without running again.
+- Difficulties: I ran into an issue with the tool indicating there were no changes against master.
+- What changed: It turned out I had to commit changes so that the tool acknowledged them as changes against master; the tool ran successfully after the change. 
 
 ---
 
