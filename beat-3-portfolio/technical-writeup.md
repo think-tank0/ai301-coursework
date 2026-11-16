@@ -32,7 +32,7 @@ After browsing through hundreds of open source project issues, I found https://g
  		self.bindHelpEvent("BrowseModeSettingsMaxLength", self.maxLengthEdit)
 ```
 
-The hardest challenge for me was understanding the user experience being described in the issue as someone who primarily relies on their eyes while testing software aimed at people who cannot rely alone on what they see alone. This required me to read the NVDA documentation and to learn through experience, and AI prompting, the purpose of BrowseMode and how to interact with a website via keyboard to create a manual test that would help others understand the need for the feature and validate the change in behavior after merging the PR changes. This is the test I came up with:
+The hardest challenge for me was understanding the user experience being described in the issue as someone who primarily relies on their eyes while testing software aimed at people who cannot rely on what they see alone. This required me to read the NVDA documentation and to learn through experience, and AI prompting, the purpose of BrowseMode and how to interact with a website via keyboard to create a manual test that would help others understand the need for the feature and validate the change in behavior after merging the PR changes. This is the test I came up with:
 
 Create longParagraph.html locally
 ```
